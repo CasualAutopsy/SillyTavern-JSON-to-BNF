@@ -1,0 +1,11 @@
+{
+    "display_name": "JSON to BNF",
+    "loading_order": 2,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "author": "CasualAutopsy",
+    "version": "1.0",
+    "homePage": "https://github.com/CasualAutopsy/SillyTavern-JSON-to-BNF",
+    "auto_update": true
+}
