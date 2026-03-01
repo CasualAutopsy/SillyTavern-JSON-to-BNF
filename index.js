@@ -81,3 +81,8 @@ SlashCommandParser.addCommandObject(SlashCommand.fromProps({
     splitUnnamedArgument: false,
     helpString: 'Set the grammar string for the next generation request.\n(G/E)BNF Sampler parameters are reset upon finishing a gen request.'
 }));
+
+jQuery(async () => {
+    // JQuery Events
+    registerEvents();
+});
