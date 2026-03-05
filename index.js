@@ -24,21 +24,24 @@ async function ephemeralBNF(args, value) {
     saveSettingsDebounced();
 }
 
-async function clearEphemeralBNF(args){
+function clearEphemeralBNF(){
     extension_settings.jsontobnf = "";
     saveSettingsDebounced();
 }
 
-async function sendBNF(args){
-    if (extension_settings.jsontobnf !== "") {
-        Object.assign(args, extension_settings.jsontobnf);
-    }
-}
-
 function registerEvents() {
-    eventSource.on(event_types.TEXT_COMPLETION_SETTINGS_READY, sendBNF);
-    eventSource.on(event_types.GENERATION_ENDED, clearEphemeralBNF);
-    eventSource.on(event_types.APP_READY, clearEphemeralBNF);
+    eventSource.on(event_types.TEXT_COMPLETION_SETTINGS_READY, (args) => {
+        Object.assign(args, typeof extension_settings.jsontobnf === 'object' ? extension_settings.jsontobnf : {});
+
+        clearEphemeralBNF();
+    });
+
+    eventSource.on(event_types.CHAT_COMPLETION_SETTINGS_READY, async (args) => {
+        const settings = typeof extension_settings.jsontobnf === 'object' ? extension_settings.jsontobnf : {};
+        Object.assign(args, {'custom_include_body': JSON.stringify(settings) });
+
+        clearEphemeralBNF();
+    });
 }
 
 SlashCommandParser.addCommandObject(SlashCommand.fromProps({
