@@ -1,11 +1,12 @@
 {
     "display_name": "JSON to BNF",
     "loading_order": 2,
-    "requires": [],
-    "optional": [],
+    "dependencies": [
+        "third-party/STLibs-Nox-Library"
+    ],
     "js": "dist/index.js",
     "author": "CasualAutopsy",
-    "version": "1.0",
+    "version": "2.0.0",
     "homePage": "https://github.com/CasualAutopsy/SillyTavern-JSON-to-BNF",
-    "auto_update": true
+    "auto_update": false
 }
